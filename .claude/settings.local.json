@@ -33,7 +33,10 @@
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial project scaffolding\n\n- Backend: FastAPI skeleton with /health endpoint and tests\n- Desktop: Tauri + React skeleton with shadcn/ui and tweakcn theme\n- UI: packages/ui placeholder for shared components\n- Skills: 11 custom skills for development workflow\n- Docs: spec, PRD, architecture, ADRs, UX guidelines\n- Rules: Claude/Cursor rules for backend, frontend, security\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git remote add:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

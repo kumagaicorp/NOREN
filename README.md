@@ -1,7 +1,12 @@
 # NOREN
 
+[![GitHub](https://img.shields.io/badge/GitHub-kumagaicorp%2FNOREN-blue)](https://github.com/kumagaicorp/NOREN)
+
 ## 概要
 - TODO: プロジェクト概要
+
+## リポジトリ
+https://github.com/kumagaicorp/NOREN
 
 ## 開発構成
 - Backend: `backend/` (FastAPI)
