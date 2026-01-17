@@ -1,0 +1,5 @@
+# Backend Planning Rules
+
+- レイヤ分離（api → services → repositories）を保つ。
+- エラーモデルは `{code, message, details}` を採用する。
+- テストは unit を中心に追加する。

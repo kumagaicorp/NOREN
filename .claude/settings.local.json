@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(/plugin marketplace add:*)",
+      "Skill(skill-creator)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Stegoman\\\\Desktop\\\\Projects\\\\Kumagaicorp\\\\NOREN\" -Recurse -Depth 3)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(python scripts/init_skill.py:*)",
+      "Bash(export PYTHONIOENCODING=utf-8)",
+      "Bash(xargs rm:*)",
+      "Bash(xargs rmdir:*)",
+      "Bash(for skill in plan-to-implementation python-backend-architecture backend-testing tauri-ipc-security tauri-build-release shadcn-component-authoring tweakcn-token-workflow pr-review-playbook adr-writer ux-spec-translator ui-spec-compliance)",
+      "Bash(do echo \"=== Validating $skill ===\")",
+      "Bash(python scripts/quick_validate.py:*)",
+      "Bash(done)",
+      "Bash(pip install:*)",
+      "Bash(do echo \"=== $skill ===\")",
+      "Bash(export PYTHONUTF8=1)",
+      "Bash(do echo \"=== Packaging $skill ===\")",
+      "Bash(python scripts/package_skill.py:*)",
+      "Bash(git init:*)",
+      "Bash(python -m pytest:*)",
+      "WebFetch(domain:shadcraft.com)",
+      "Bash(pnpm install:*)",
+      "Bash(rustc:*)",
+      "Bash(cargo:*)",
+      "Bash(pnpm dlx:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial project scaffolding\n\n- Backend: FastAPI skeleton with /health endpoint and tests\n- Desktop: Tauri + React skeleton with shadcn/ui and tweakcn theme\n- UI: packages/ui placeholder for shared components\n- Skills: 11 custom skills for development workflow\n- Docs: spec, PRD, architecture, ADRs, UX guidelines\n- Rules: Claude/Cursor rules for backend, frontend, security\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git remote add:*)",
+      "Bash(git config:*)"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+# Frontend Planning Rules
+
+- `features/` と `components/` を分離する。
+- tokens を優先して使う。
+- a11y を要件として明示する。

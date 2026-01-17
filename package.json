@@ -1,0 +1,14 @@
+{
+  "name": "noren",
+  "private": true,
+  "scripts": {
+    "dev:desktop": "pnpm --filter noren-desktop dev",
+    "build:desktop": "pnpm --filter noren-desktop build",
+    "tauri": "pnpm --filter noren-desktop tauri"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

@@ -1,0 +1,213 @@
+# TASKS
+
+- Milestone 1: Repo scaffolding & tooling
+  - Task 1: Initialize repo structure and docs skeleton
+    - Goal: 仕様に準拠したフォルダ構成と基礎ドキュメントを作成する
+    - Files to touch:
+      - `docs/spec.md`
+      - `CLAUDE.md`
+      - `README.md`
+      - `docs/PRD.md`
+      - `docs/ARCHITECTURE.md`
+      - `docs/ADR/0001-tech-stack.md`
+      - `docs/ADR/0002-api-conventions.md`
+      - `docs/API/openapi.notes.md`
+      - `docs/UX/ui-guidelines.md`
+      - `docs/UX/tweakcn-tokens.md`
+    - Implementation steps:
+      - 仕様の規範どおりにディレクトリを作成する
+      - ドキュメントの雛形を作成する
+    - Tests:
+      - なし（構造確認のみ）
+    - Acceptance criteria:
+      - `docs/` 配下に必要なファイルが存在する
+      - ルートに `CLAUDE.md` が存在する
+    - Risks/notes:
+      - 仕様変更があればテンプレを更新する
+  - Task 2: Add Claude/Cursor rules and agents
+    - Goal: ルールとサブエージェントの雛形を配置する
+    - Files to touch:
+      - `.claude/rules/general.md`
+      - `.claude/rules/security.md`
+      - `.claude/rules/backend/api.md`
+      - `.claude/rules/backend/testing.md`
+      - `.claude/rules/frontend/ui.md`
+      - `.claude/rules/frontend/tauri.md`
+      - `.claude/agents/code-reviewer.md`
+      - `.claude/agents/backend-engineer.md`
+      - `.claude/agents/frontend-engineer.md`
+      - `.claude/agents/test-engineer.md`
+      - `.claude/agents/security-auditor.md`
+      - `.claude/agents/release-engineer.md`
+      - `.claude/agents/ux-designer.md`
+      - `.claude/agents/ui-spec-compliance-checker.md`
+      - `.cursor/rules/00-global.mdc`
+      - `.cursor/rules/10-backend-python.mdc`
+      - `.cursor/rules/20-frontend-react.mdc`
+      - `.cursor/rules/30-tauri.mdc`
+      - `.cursor/rules/40-pr-review.mdc`
+    - Implementation steps:
+      - 仕様のルール階層に沿って雛形を作成する
+      - 役割・期待成果物を簡潔に記載する
+    - Tests:
+      - なし（ファイル配置の確認）
+    - Acceptance criteria:
+      - すべての規定ファイルが存在する
+    - Risks/notes:
+      - 役割追加があれば `.claude/agents` を拡張する
+  - Task 3: Add tooling placeholders
+    - Goal: `tools/` のベース構造を追加する
+    - Files to touch:
+      - `tools/scripts/`
+      - `tools/ci/`
+    - Implementation steps:
+      - ディレクトリを作成する
+    - Tests:
+      - なし
+    - Acceptance criteria:
+      - `tools/scripts` と `tools/ci` が存在する
+    - Risks/notes:
+      - CI 方針が決まったら内容を追加する
+  - Task 4: Add UX pipeline assets
+    - Goal: UX生産ラインの雛形を追加する
+    - Files to touch:
+      - `.claude/agents/ux-designer.md`
+      - `.claude/agents/ui-spec-compliance-checker.md`
+      - `docs/UX/ui-guidelines.md`
+    - Implementation steps:
+      - UXデザイナーと準拠チェッカーの雛形を作成する
+      - UX仕様書の標準フォーマットを追記する
+    - Tests:
+      - なし
+    - Acceptance criteria:
+      - UX用Subagentが配置されている
+      - UXテンプレが `docs/UX/ui-guidelines.md` にある
+    - Risks/notes:
+      - スクショ入力の取り扱いはSoTに準拠する
+  - Task 5: Add skills workflow baseline
+    - Goal: skills-creator を使える前提の土台を整備する
+    - Files to touch:
+      - `.claude/skills/`
+      - `docs/spec.md`
+    - Implementation steps:
+      - `.claude/skills/` を作成する
+      - Marketplace を project scope で導入する
+        - `/plugin marketplace add anthropics/skills`
+        - `/plugin install example-skills@anthropic-agent-skills --scope project`
+        - `/plugin install document-skills@anthropic-agent-skills --scope project`
+      - skills-creator の運用手順に沿ってテンプレを配置する
+    - Tests:
+      - なし
+    - Acceptance criteria:
+      - skills を配置できるディレクトリが存在する
+      - SoT に運用手順が記載されている
+      - Marketplace 導入手順が明記されている
+    - Risks/notes:
+      - skills の仕様は upstream の `template/` と `spec/` に準拠する
+
+- Milestone 2: Backend skeleton + health endpoints + tests
+  - Task 1: Create FastAPI skeleton
+    - Goal: backend の最小構成を作成する
+    - Files to touch:
+      - `backend/pyproject.toml`
+      - `backend/README.md`
+      - `backend/src/app/main.py`
+      - `backend/src/app/api/`
+      - `backend/src/app/core/`
+      - `backend/src/app/services/`
+      - `backend/src/app/models/`
+      - `backend/src/app/repositories/`
+    - Implementation steps:
+      - FastAPI 初期化と依存を設定する
+      - 設定/例外/ロギングの最小基盤を `core/` に用意する
+      - ルーティングの基盤（api 配下）を作る
+    - Tests:
+      - なし（次タスクで追加）
+    - Acceptance criteria:
+      - サーバーが起動できる
+    - Risks/notes:
+      - 設定方式は `core/config` に寄せる
+  - Task 2: Add health endpoint
+    - Goal: ヘルスチェック API を追加する
+    - Files to touch:
+      - `backend/src/app/api/health.py`
+      - `backend/src/app/main.py`
+      - `backend/src/app/core/errors.py`
+    - Implementation steps:
+      - `/health` を追加し、成功時は 200 を返す
+      - 失敗時は `{code, message, details}` で返す
+    - Tests:
+      - なし（次タスクで追加）
+    - Acceptance criteria:
+      - `/health` が 200 を返す
+    - Risks/notes:
+      - 例外形式を統一する
+  - Task 3: Add backend tests
+    - Goal: ヘルスチェックの pytest を追加する
+    - Files to touch:
+      - `backend/tests/unit/test_health.py`
+    - Implementation steps:
+      - 成功レスポンスのテストを書く
+      - エラー時のレスポンス形式をテストする
+    - Tests:
+      - `pytest`
+    - Acceptance criteria:
+      - `pytest` が成功する
+    - Risks/notes:
+      - 依存追加は最小限にする
+
+- Milestone 3: Desktop skeleton + UI baseline + backend connectivity
+  - Task 1: Create Tauri + React skeleton
+    - Goal: apps/desktop の最小構成を作成する
+    - Files to touch:
+      - `apps/desktop/package.json`
+      - `apps/desktop/vite.config.ts`
+      - `apps/desktop/index.html`
+      - `apps/desktop/src/main.tsx`
+      - `apps/desktop/src/app/`
+      - `apps/desktop/src/features/`
+      - `apps/desktop/src/components/`
+      - `apps/desktop/src/lib/`
+      - `apps/desktop/src-tauri/Cargo.toml`
+      - `apps/desktop/src-tauri/tauri.conf.json`
+      - `apps/desktop/src-tauri/src/main.rs`
+    - Implementation steps:
+      - Tauri の初期化と最小 UI を設定する
+      - `/health` を呼び出す簡易 UI（接続OK/NG、再試行）を作る
+    - Tests:
+      - `npm test` または `pnpm test`（導入後）
+    - Acceptance criteria:
+      - 開発ビルドが起動する
+      - 画面に疎通結果が表示される
+    - Risks/notes:
+      - 依存は最小限で開始する
+  - Task 2: Add UI baseline and tokens
+    - Goal: UI の基準スタイルと tokens 運用の土台を作る
+    - Files to touch:
+      - `packages/ui/`
+      - `docs/UX/tweakcn-tokens.md`
+      - `docs/UX/ui-guidelines.md`
+    - Implementation steps:
+      - tokens の利用方針を明文化する
+      - 最低限の UI ガイドライン（a11y 含む）を記載する
+    - Tests:
+      - なし（見た目確認）
+    - Acceptance criteria:
+      - tokens の利用ルールが docs にある
+      - UI ガイドラインが docs にある
+    - Risks/notes:
+      - shadcn/ui の導入手順を後で追加する
+  - Task 3: Decide backend connectivity (ADR)
+    - Goal: A/B/C の接続方式を ADR で固定する
+    - Files to touch:
+      - `docs/ADR/0003-backend-connection.md`
+      - `docs/ARCHITECTURE.md`
+    - Implementation steps:
+      - MVP は A を採用する ADR を作成する
+      - ARCHITECTURE に反映する
+    - Tests:
+      - なし
+    - Acceptance criteria:
+      - MVP の接続方式が ADR と ARCHITECTURE に明記される
+    - Risks/notes:
+      - PRD 確定後に B/C を再検討する

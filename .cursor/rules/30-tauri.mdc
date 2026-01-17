@@ -1,0 +1,4 @@
+# Tauri Planning Rules
+
+- IPC の入力スキーマを明確化する。
+- OSアクセスは最小権限で設計する。
